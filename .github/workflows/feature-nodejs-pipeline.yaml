@@ -43,7 +43,7 @@ jobs:
       run: echo "run unit tests" 
     - name: docker build
       run: docker build -t 307223751858.dkr.ecr.us-east-1.amazonaws.com/catalogue:latest  
-    - name: Print inputs
+    - name: Print projects inputs
       run: |
         echo "Project: ${{ inputs.project }}"
         echo "Component: ${{ inputs.component }}"
