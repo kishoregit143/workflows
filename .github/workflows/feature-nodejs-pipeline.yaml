@@ -25,7 +25,7 @@ jobs:
     - name: get the version
       run: |
         # if you store it in GITHUB_ENV, you can use in other steps in the same job
-        echo "APP_VERSION=${GITHUB_SHA::9}" >> "$GITHUB_ENV"
+        echo "APP_VERSION=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
 
     - name: print inputs
       run: |
