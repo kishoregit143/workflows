@@ -36,15 +36,13 @@ jobs:
       run: |
         echo ${{ inputs.project }}
         echo "version: ${APP_VERSION}" 
+        echo "Component: ${{ inputs.component }}"
+        echo "Environment: ${{ inputs.environment }}"
 
     - name: install dependencies
       run: npm install  
     - name: run unititest
       run: echo "run unit tests" 
     - name: docker build
-      run: docker build -t 307223751858.dkr.ecr.us-east-1.amazonaws.com/catalogue:latest  
-    - name: Print projects inputs
-      run: |
-        echo "Project: ${{ inputs.project }}"
-        echo "Component: ${{ inputs.component }}"
-        echo "Environment: ${{ inputs.environment }}"
+      run: docker build -t 307223751858.dkr.ecr.us-east-1.amazonaws.com/catalogue:latest
+        
