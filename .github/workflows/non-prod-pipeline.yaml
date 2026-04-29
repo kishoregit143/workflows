@@ -88,13 +88,7 @@ jobs:
 
       - name: deploy to ${{ inputs.environment }} cluster
         id: uat_deploy
-        run: |
-         helm upgrade --install catalogue \
-         -f values-dev.yaml \
-         -n roboshop \
-         --create-namespace \
-         --set deployment.imageVersion=$APP_VERSION \
-         --wait --timeout=5m .
+        run: "helm upgrade --install catalogue -f values-dev.yaml -n roboshop --set deployment.imageVersion=${APP_VERSION} --atomic --wait --timeout=5m ."
 
       - name: Update Deploy status
         if: always()
