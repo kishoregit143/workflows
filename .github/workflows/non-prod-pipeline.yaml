@@ -84,17 +84,17 @@ jobs:
       - name: checkout catalogue deploy repo
         uses: actions/checkout@v6
         with:
-          repository: kishoregit143/catalogue-deploy
-
-      - name: Configure kubeconfig
-        run: |
-          aws eks update-kubeconfig \
-          --region us-east-1 \
-          --name roboshop-dev    
+          repository: kishoregit143/catalogue-deploy   
 
       - name: deploy to ${{ inputs.environment }} cluster
         id: uat_deploy
-        run: "helm upgrade --install catalogue -f values-dev.yaml -n roboshop --set deployment.imageVersion=${APP_VERSION} --atomic --wait --timeout=5m ."
+        run: |
+         helm upgrade --install catalogue \
+         -f values-dev.yaml \
+         -n roboshop \
+         --create-namespace \
+         --set deployment.imageVersion=$APP_VERSION \
+         --wait --timeout=5m .
 
       - name: Update Deploy status
         if: always()
